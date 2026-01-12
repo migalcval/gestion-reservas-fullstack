@@ -1,0 +1,12 @@
+reservas-api/target/
+reservas-api/.mvn/
+reservas-api/mvnw
+reservas-api/mvnw.cmd
+reservas-api/.classpath
+reservas-api/.project
+reservas-api/.settings/
+reservas-api/.vscode/
+
+reservas-frontend/node_modules/
+reservas-frontend/dist/
+reservas-frontend/.env
