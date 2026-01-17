@@ -30,11 +30,25 @@ public class ReservaService {
     public ReservaDTO postReserva(ReservaDTO reservaDTO) {
         
         Reserva reserva = mapToEntity(reservaDTO);
-        if (reservaRepository.findByFecha(reserva.getFecha()).isPresent()) {
-            throw new ReservaDuplicadaException("Ya existe una reserva para la fecha: " + reserva.getFecha());
+        int hora = reserva.getFecha().getHour();
+
+        //validacion 1
+        if (hora <8 || hora >21) {
+            throw new IllegalArgumentException("La reserva debe ser entre las 8:00 y las 21:00 horas");
         }
-        Reserva reservaSaved = reservaRepository.save(reserva);
-        return mapToDTO(reservaSaved);
+
+        int minutos = reserva.getFecha().getMinute();
+        if (minutos !=0 && minutos !=30) {
+            throw new IllegalArgumentException("La reserva debe ser cada 30min");
+        }
+
+        //validacion 3
+        if (reservaRepository.findByFecha(reserva.getFecha()).isPresent()) {
+        throw new ReservaDuplicadaException("Ya existe una reserva para esa fecha y hora: " + reserva.getFecha());
+        }
+
+        Reserva reservaGuardada = reservaRepository.save(reserva);
+        return mapToDTO(reservaGuardada);
     }
 
     //----- GET ALL RESERVAS -----

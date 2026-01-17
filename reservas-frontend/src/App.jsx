@@ -34,18 +34,17 @@ function App() {
 
       <h3 style={{marginTop:20}}>Listado Actual ({reservas.length})</h3>
       
-      {reservas.length === 0 ? (
-        <p>No hay reservas. ¡Crea la primera arriba!</p>
-      ) : (
+      {reservas.length > 0 && (
         <ul>
           {reservas.map((reserva) => (
             <li key={reserva.id} style={{ marginBottom: '10px', padding: '10px', borderBottom: '1px solid #eee' }}>
               
-              <strong>{reserva.fecha}</strong> - {reserva.cliente} 
+              <strong>{reserva.fecha}</strong>{reserva.cliente} 
               
               <button 
+                className="boton-borrar"
                 onClick={() => borrarReserva(reserva.id)}
-                style={{ marginLeft: '15px', color: 'red', cursor: 'pointer' }}
+                style={{ marginLeft: '15px', cursor: 'pointer' }}
               >
                 Borrar
               </button>

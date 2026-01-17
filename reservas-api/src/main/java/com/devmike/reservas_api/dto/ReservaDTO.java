@@ -1,6 +1,6 @@
 package com.devmike.reservas_api.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ public class ReservaDTO {
 
     @NotNull(message = "La fecha es obligatoria")
     @FutureOrPresent(message = "La reserva debe ser para hoy o el futuro")
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @NotBlank(message = "El nombre del cliente es obligatorio")
     private String cliente;
@@ -24,7 +24,7 @@ public class ReservaDTO {
         
     }
 
-    public ReservaDTO(Long id, LocalDate fecha, String cliente) {
+    public ReservaDTO(Long id, LocalDateTime fecha, String cliente) {
         this.id = id;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -40,11 +40,11 @@ public class ReservaDTO {
         this.id = id; 
     }
 
-    public LocalDate getFecha() { 
+    public LocalDateTime getFecha() { 
         return fecha; 
     }
 
-    public void setFecha(LocalDate fecha) { 
+    public void setFecha(LocalDateTime fecha) { 
         this.fecha = fecha; 
     }
 

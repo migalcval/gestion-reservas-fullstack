@@ -6,7 +6,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class ReservaServiceTest {
     @Test
     void testCrearReservaDuplicadaLanzaExcepcion() {
         // 1. GIVEN (Preparación del escenario)
-        LocalDate fechaConflictiva = LocalDate.of(2024, 12, 25);
+        LocalDateTime fechaConflictiva = LocalDateTime.of(2024, 12, 25, 10, 0);
 
         // Simulamos que la base de datos YA tiene una reserva en esa fecha
         Reserva reservaExistenteEnBBDD = new Reserva();
@@ -59,5 +59,33 @@ public class ReservaServiceTest {
 
         // Verificación extra: Aseguramos que el método .save() NUNCA se llamó
         verify(reservaRepository, never()).save(any());
+    }
+
+    @Test
+    void testCrearReservaFueraDeHorarioLanzaExcepcion() {
+        LocalDateTime fechaMala = LocalDateTime.of(2024, 12, 25, 3, 0); 
+    
+        ReservaDTO reservaMalaDTO = new ReservaDTO();
+        reservaMalaDTO.setFecha(fechaMala);
+        reservaMalaDTO.setCliente("angeloto ramales");
+
+        // Esperamos IllegalArgumentException
+        assertThrows(IllegalArgumentException.class, () -> {
+            reservaService.postReserva(reservaMalaDTO);
+        });
+    }
+
+    @Test
+    void testCrearReservaMinutosIncorrectosLanzaExcepcion() {
+        LocalDateTime fechaImprecisa = LocalDateTime.of(2024, 12, 25, 10, 15);
+    
+        ReservaDTO reservaImprecisaDTO = new ReservaDTO();
+        reservaImprecisaDTO.setFecha(fechaImprecisa);
+        reservaImprecisaDTO.setCliente("Impreciso");
+
+        // Esperamos IllegalArgumentException
+        assertThrows(IllegalArgumentException.class, () -> {
+            reservaService.postReserva(reservaImprecisaDTO);
+        });
     }
 }

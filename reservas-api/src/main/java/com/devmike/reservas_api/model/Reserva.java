@@ -1,6 +1,6 @@
 package com.devmike.reservas_api.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     private String cliente;
 
@@ -28,7 +28,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(LocalDate fecha, String cliente) {
+    public Reserva(LocalDateTime fecha, String cliente) {
         this.fecha = fecha;
         this.cliente = cliente;
     }
@@ -43,12 +43,12 @@ public class Reserva {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFecha(LocalDateTime fechaConflictiva) {
+        this.fecha = fechaConflictiva;
     }
 
     public String getCliente() {

@@ -112,3 +112,18 @@ li button {
 li button:hover {
   background-color: #c0392b;
 }
+
+.boton-borrar {
+    background-color: #555555;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-borrar:hover {
+    background-color: #bb200e;
+}
