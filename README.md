@@ -12,11 +12,10 @@ Aplicación web completa para la gestión de reservas de clientes. Desarrollada 
 * **OpenAPI / Swagger** (Documentación automática de la API)
 * **Maven** (Gestión de dependencias)
 
-### Frontend (SPA)
-* **React + Vite** (Entorno de desarrollo rápido)
-* **JavaScript (ES6+)**
-* **CSS3** (Diseño responsivo y moderno)
-* **Fetch API** (Consumo de servicios REST)
+### Frontend
+* **React Router:** Navegación fluida (SPA) con gestión de rutas `/admin`, `/user`, `/home`.
+* **Material UI (MUI):** Librería de componentes de diseño.
+* **UX/UI:** Formularios interactivos, Feedback visual y diseño responsive.
 
 ## Funcionalidades
 

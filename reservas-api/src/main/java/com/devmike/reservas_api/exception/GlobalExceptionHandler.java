@@ -28,7 +28,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> manejarValidaciones(MethodArgumentNotValidException ex) {
         Map<String, String> errores = new HashMap<>();
         
-        // Extraemos cada campo que falló y su mensaje
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errores.put(error.getField(), error.getDefaultMessage());
         });

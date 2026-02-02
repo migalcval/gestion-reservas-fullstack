@@ -26,6 +26,9 @@ public class ReservaService {
 
     //--------------------------- Methods ---------------------------
 
+    private static final int HORA_APERTURA = 8;
+    private static final int HORA_CIERRE = 21;
+
     //----- POST RESERVA -----
     public ReservaDTO postReserva(ReservaDTO reservaDTO) {
         
@@ -33,7 +36,7 @@ public class ReservaService {
         int hora = reserva.getFecha().getHour();
 
         //validacion 1
-        if (hora <8 || hora >21) {
+        if (hora < HORA_APERTURA || hora > HORA_CIERRE) {
             throw new IllegalArgumentException("La reserva debe ser entre las 8:00 y las 21:00 horas");
         }
 
@@ -88,15 +91,15 @@ public class ReservaService {
         Reserva reservaExistente = reservaRepository.findById(id)
                 .orElseThrow(() -> new NotIdReserva("No existe una reserva con ID: " + id));
 
-        if (!reserva.getFecha().equals(reservaExistente.getFecha())) {
+        if (!reserva.fecha().equals(reservaExistente.getFecha())) {
             
-            if (reservaRepository.findByFecha(reserva.getFecha()).isPresent()) {
+            if (reservaRepository.findByFecha(reserva.fecha()).isPresent()) {
                 throw new ReservaDuplicadaException("Esa fecha ya está ocupada por otro cliente");
             }
         }
 
-        reservaExistente.setCliente(reserva.getCliente());
-        reservaExistente.setFecha(reserva.getFecha());
+        reservaExistente.setCliente(reserva.cliente());
+        reservaExistente.setFecha(reserva.fecha());
 
         Reserva reservaGuardada = reservaRepository.save(reservaExistente);
         return mapToDTO(reservaGuardada);
@@ -106,9 +109,9 @@ public class ReservaService {
 
     private Reserva mapToEntity(ReservaDTO dto) {
         Reserva reserva = new Reserva();
-        reserva.setId(dto.getId()); 
-        reserva.setFecha(dto.getFecha());
-        reserva.setCliente(dto.getCliente());
+        reserva.setId(dto.id()); 
+        reserva.setFecha(dto.fecha());
+        reserva.setCliente(dto.cliente());
         return reserva;
     }
 
