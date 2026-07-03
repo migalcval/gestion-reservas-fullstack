@@ -1,56 +1,99 @@
-# Gestor de Reservas - Full Stack App
+# Reservation Management System — Full-Stack App
 
-Aplicación web completa para la gestión de reservas de clientes. Desarrollada con arquitectura de microservicios (Backend separado del Frontend) y mejores prácticas de desarrollo.
+![Java](https://img.shields.io/badge/Java_17-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Material UI](https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=mui&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
 
-## Tecnologías Utilizadas
+A full-stack web application for managing customer reservations, built with a decoupled backend/frontend architecture and following standard development best practices, including automated testing and API documentation.
 
-### Backend (API REST)
-* **Java 17** & **Spring Boot 3**
-* **JPA / Hibernate** (Persistencia de datos)
-* **H2 Database** (Base de datos en memoria para desarrollo)
-* **JUnit 5 & Mockito** (Tests Unitarios y de Integración)
-* **OpenAPI / Swagger** (Documentación automática de la API)
-* **Maven** (Gestión de dependencias)
+<!-- Add a screenshot or GIF of the app here once available -->
+<!-- ![Demo](./docs/demo.gif) -->
 
-### Frontend
-* **React Router:** Navegación fluida (SPA) con gestión de rutas `/admin`, `/user`, `/home`.
-* **Material UI (MUI):** Librería de componentes de diseño.
-* **UX/UI:** Formularios interactivos, Feedback visual y diseño responsive.
+## Overview
 
-## Funcionalidades
+This project implements a complete reservation management workflow, from data validation and persistence on the backend to an interactive, responsive interface on the frontend. The backend and frontend are fully decoupled and communicate through a REST API, documented with OpenAPI/Swagger.
 
-* **Crear Reserva:** Validación de datos y control de duplicados.
-* **Listar Reservas:** Visualización en tiempo real de los datos.
-* **Eliminar Reserva:** Gestión de borrado con confirmación.
-* **Validaciones:** Control de errores robusto (Backend) y feedback visual (Frontend).
+## Features
 
-## Instalación y Ejecución
+- **Create reservations** — form validation and duplicate-entry control
+- **List reservations** — real-time data display
+- **Delete reservations** — deletion flow with confirmation step
+- **Robust validation** — server-side error handling combined with frontend visual feedback
 
-### 1. Backend (Servidor)
-El servidor corre en el puerto `8080`.
+## Tech Stack
+
+**Backend (REST API)**
+- Java 17 & Spring Boot 3
+- JPA / Hibernate for data persistence
+- H2 Database (in-memory database for development)
+- JUnit 5 & Mockito for unit and integration testing
+- OpenAPI / Swagger for automatic API documentation
+- Maven for dependency management
+
+**Frontend**
+- React Router for client-side navigation (`/admin`, `/user`, `/home`)
+- Material UI (MUI) as the component library
+- Interactive forms with visual feedback and responsive design
+
+## Project Structure
+
+```
+gestion-reservas-fullstack/
+├── reservas-api/         # Spring Boot backend (REST API)
+└── reservas-frontend/    # React frontend (SPA)
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Java 17+
+- Node.js and npm
+- Maven (or use the included wrapper)
+
+### 1. Backend
+
+The API server runs on port `8080`.
+
 ```bash
 cd reservas-api
 ./mvnw spring-boot:run
 ```
 
-Documentación API (Swagger): http://localhost:8080/swagger-ui/index.html
+API documentation (Swagger UI): `http://localhost:8080/swagger-ui/index.html`
 
-### 2. Frontend (Cliente)
-La web corre en el puerto `5173`.
+### 2. Frontend
+
+The web client runs on port `5173`.
+
 ```bash
 cd reservas-frontend
 npm install
 npm run dev
 ```
-Acceso web: http://localhost:5173
 
-### 3. Testing
-El proyecto cuenta con cobertura de tests para la lógica de negocio. Para ejecutar las pruebas:
+Application URL: `http://localhost:5173`
+
+### 3. Running Tests
+
+The backend includes test coverage for the core business logic.
+
 ```bash
 cd reservas-api
 ./mvnw test
 ```
 
-### Autor
+## What I Learned
 
-Miguel Alcázar - https://www.linkedin.com/in/miguel-alc%C3%A1zar-5b3bb5283/
+Working on this project helped me deepen my understanding of decoupled architectures, where the frontend and backend evolve independently and communicate exclusively through a well-defined REST contract. It also gave me hands-on practice writing meaningful unit and integration tests rather than treating testing as an afterthought, and using Swagger to keep API documentation in sync with the actual implementation.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+**Miguel Alcázar**
+[LinkedIn](https://www.linkedin.com/in/miguel-alc%C3%A1zar-5b3bb5283/)
